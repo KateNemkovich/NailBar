@@ -18,15 +18,18 @@ public class NailBar
         _recipeBook = recipeBook;
     }
 
-    public void AskForNailsDesign() //ничего не возвращающий метод, он просто совершает действия (диалог)
+    /// <summary>
+    ///     ничего не возвращающий метод, он просто совершает действия (диалог)
+    /// </summary>
+    public void AskForNailsDesign()
     {
-        _outputProvider($"What design do you want? ({string.Join(",", _recipeBook.GetAvailableDrinkNames())})");
+        _outputProvider($"What design do you want? ({string.Join(",", _recipeBook.GetAvailableDesigns())})");
 
         var design = _inputProvider() ?? string.Empty; //получаем введённое значение  (что означает (?? string.Empty)?)
 
-        if (!_recipeBook.GetAvailableDrinkNames().Contains(design))
+        if (!_recipeBook.GetAvailableDesigns().Contains(design))
         {
-            _outputProvider("Sorry I don't know how to make this nail art design");
+            _outputProvider($"Sorry babe,but we don't do {design}");
             return;
         }
 

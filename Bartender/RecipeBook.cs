@@ -2,13 +2,13 @@
 
 public class RecipeBook
 {
-    private readonly Func<string>
-        _inputProvider; //поле для чтения присвоим занчение только при их объявлении,либо в конструкторе, что мы и сделаем в методе ниже. делегат func  возвращает результат действий
+    //поле для чтения присвоим занчение только при их объявлении,либо в конструкторе, что мы и сделаем в методе ниже. делегат func  возвращает результат действий
+    private readonly Func<string> _inputProvider;
 
     private readonly Dictionary<string, Action> _nailArts;
 
-    private readonly Action<string>
-        _outputProvider; //делегат Action действие которое ничего не возвращает, просто вызывает фразы в ответ на произошедшее действие
+    //делегат Action действие которое ничего не возвращает, просто вызывает фразы в ответ на произошедшее действие
+    private readonly Action<string> _outputProvider;
 
     public RecipeBook(Func<string> inputProvider, Action<string> outputProvider)
     {
@@ -28,20 +28,16 @@ public class RecipeBook
         _nailArts[manicureName]();
     }
 
-    public IEnumerable<string> GetAvailableDrinkNames()
+    public IEnumerable<string> GetAvailableDesigns()
     {
         return _nailArts.Keys;
-    }
-
-    private void ManicureIsNotAvailable(string manicure)
-    {
-        _outputProvider($"Sorry babe,but we don't do {manicure}");
     }
 
     private void MakeAquarium()
     {
         _outputProvider("How much time do you have?");
-        if (!int.TryParse(_inputProvider(), out var time)) //out передача аргумента по ссылке??
+        //out передача аргумента по ссылке??
+        if (!int.TryParse(_inputProvider(), out var time))
         {
             HandleInvalidTime();
             return;
@@ -63,7 +59,8 @@ public class RecipeBook
     private void MakeMoon()
     {
         _outputProvider("How much time do you have?");
-        if (!int.TryParse(_inputProvider(), out var time)) //out передача аргумента по ссылке??
+        //out передача аргумента по ссылке??
+        if (!int.TryParse(_inputProvider(), out var time))
         {
             HandleInvalidTime();
             return;
