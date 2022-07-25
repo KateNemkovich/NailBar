@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bartender", "Bartender\Bartender.csproj", "{76B8C532-3890-404B-A0C5-0A3FB509DFD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NailBar", "Bartender\NailBar.csproj", "{76B8C532-3890-404B-A0C5-0A3FB509DFD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

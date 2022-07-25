@@ -2,7 +2,7 @@
 
 public class RecipeBook
 {
-  private readonly Dictionary<string, Action> _recipes;
+  private readonly Dictionary<string, Action> _nailArts;
   private readonly Func<string> _inputProvider; //поле для чтения присвоим занчение только при их объявлении,либо в конструкторе, что мы и сделаем в методе ниже. делегат func  возвращает результат действий
   private readonly Action<string> _outputProvider;//делегат Action действие которое ничего не возвращает, просто вызывает фразы в ответ на произошедшее действие
   
@@ -10,80 +10,70 @@ public class RecipeBook
   {
     _inputProvider = inputProvider;
     _outputProvider = outputProvider;
-    _recipes = new Dictionary<string, Action>
+    _nailArts = new Dictionary<string, Action>
     {
-      {"beer",ServeBeer},
-      {"juice",ServeJuice},
-      {"stillwater",SpecialDrink},
-      {"oldfashioned",ServerOldFashioned},
+      {"moon",MakeMoon},
+      {"matte",MakeMatte},
+      {"french",SpecialFrench},
+      {"aquarium",MakeAquarium},
     };
   }
-  public void GetRecipe(string drinkName)
+  public void GetRecipe(string manicureName)
   {
-    _recipes[drinkName]();
+    _nailArts[manicureName]();
   }
   public IEnumerable<string> GetAvailableDrinkNames()
   {
-    return _recipes.Keys;
+    return _nailArts.Keys;
   }
-  private void DrinkIsNotAvailable(string drink)
+  private void ManicureIsNotAvailable(string manicure)
   {
-    _outputProvider($"Sorry mate,but we don't do {drink}");
+    _outputProvider($"Sorry babe,but we don't do {manicure}");
   }
 
-  private void ServerOldFashioned()
+  private void MakeAquarium()
   {
-    _outputProvider("Not so fast cowboy.How old are you?");
-    if (!int.TryParse(_inputProvider(), out var age)) //out передача аргумента по ссылке??
+    _outputProvider("How much time do you have?");
+    if (!int.TryParse(_inputProvider(), out var time)) //out передача аргумента по ссылке??
     {
-      HandleInvalidAge();
+      HandleInvalidTime();
       return;
     }
         
-    HandleCoctailAgeCheck(age);
+    HandleNailsTimeCheck(time);
   }
-  private void SpecialDrink()
+  private void SpecialFrench()
   {
     _outputProvider("especially for you,Roma");
   }
 
-  private void ServeJuice()
+  private void MakeMatte()
   {
-    _outputProvider("Here you go!Fresh and nice juice.");
+    _outputProvider("Nice choice!Let's get started.");
   }
 
-  private void ServeBeer()
+  private void MakeMoon()
   {
-    _outputProvider("Not so fast cowboy.How old are you?");
-    if (!int.TryParse(_inputProvider(), out var age)) //out передача аргумента по ссылке??
+    _outputProvider("How much time do you have?");
+    if (!int.TryParse(_inputProvider(), out var time)) //out передача аргумента по ссылке??
     {
-      HandleInvalidAge();
+      HandleInvalidTime();
       return;
     }
         
-    HandleBeerAgeCheck(age);
+    HandleNailsTimeCheck(time);
   }
-  private void HandleCoctailAgeCheck(int age)
+  private void HandleNailsTimeCheck(int time)
   {
-    if (age >= 18)
+    if (time >=2)
     {
-      _outputProvider("Here you go! Quite old school");
+      _outputProvider("Ok! I will make it!");
       return;
     }
-    _outputProvider("Sorry but you're not old enough to drink (in the UK)");
+    _outputProvider("Sorry but there's not enough time for this.");
   }
-  private void HandleBeerAgeCheck(int age)
+  private void HandleInvalidTime()
   {
-    if (age >= 18)
-    {
-      _outputProvider("Here you go! Cold beer.");
-      return;
-    }
-    _outputProvider("Sorry but you're not old enough to drink (in the UK)");
-  }
-
-  private void HandleInvalidAge()
-  {
-    _outputProvider("Could not parse the age provided");
+    _outputProvider("Could not parse the time provided");
   }
 }

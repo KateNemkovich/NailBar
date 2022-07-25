@@ -7,10 +7,10 @@ namespace TheElseKeyword.Example
         static void Main(string[] args)
         {
             var recipeBook = new RecipeBook(Console.ReadLine, Console.WriteLine);
-            var bartender = new Bartender(Console.ReadLine, Console.WriteLine,recipeBook);//создаём объект класса Bartender (с применением конструктора?)
+            var manicurist = new NailBar(Console.ReadLine, Console.WriteLine,recipeBook);//создаём объект класса NailBar (с применением конструктора?)
             while (true)
             {
-                bartender.AskForDrink();
+                manicurist.AskForNailsDesign();
             }
         }
     }
